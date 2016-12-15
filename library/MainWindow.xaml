@@ -1,0 +1,70 @@
+﻿<Window x:Class="library.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:library"
+        mc:Ignorable="d"
+        Title="LIBRARY" Height="500" Width="685" FontFamily="Calibri" FontSize="18" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="20 8 20 8" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <SolidColorBrush Color="#FFC8C8C8"/>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="addButton" Content="ADD" Click="addButton_Click"/>
+            <Button x:Name="updateButton" Content="UPDATE" Click="updateButton_Click"/>
+            <Button x:Name="deleteButton" Content="DELETE" Click="deleteButton_Click" />
+        </StackPanel>
+        <TabControl x:Name="tabs" HorizontalAlignment="Left" Height="415" VerticalAlignment="Top" Width="679">
+            <TabItem Header="Students">
+                <Grid>
+                    <DataGrid AutoGenerateColumns="False" x:Name="studentGrid" Background="{x:Null}" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" CanUserResizeRows="False" CanUserAddRows="False" Width="673" IsReadOnly="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding full_name}" Header="FULL NAME" Width="280"/>
+                            <DataGridTextColumn Binding="{Binding mob_number}" Header="NUMBER" Width="150"/>
+                            <DataGridTextColumn Binding="{Binding student_code}" Header="STUDENT CARD" Width="150"/>
+                            <DataGridTextColumn Binding="{Binding books_amount}" Header="BOOKS" Width="78"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Books">
+                <Grid>
+                    <DataGrid AutoGenerateColumns="False" x:Name="bookGrid" Background="{x:Null}" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" CanUserResizeRows="False" CanUserAddRows="False" Width="673" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding title}" Header="TITLE" Width="300"/>
+                            <DataGridTextColumn Binding="{Binding author}" Header="AUTHOR" Width="160"/>
+                            <DataGridTextColumn Binding="{Binding year_pub}" Header="PUBLISHING" Width="120"/>
+                            <DataGridTextColumn Binding="{Binding available}" Header="IN STOCK" Width="80"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Blanks">
+                <Grid>
+                    <DataGrid AutoGenerateColumns="False" x:Name="blankGrid" Background="{x:Null}" CanUserReorderColumns="False" CanUserResizeColumns="False" Margin="0,0,0,-53" HorizontalAlignment="Left" CanUserResizeRows="False" CanUserAddRows="False" Grid.ColumnSpan="2" Width="673" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding status}" Header="STATUS" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding open_date, StringFormat=d}" Header="OPEN" Width="90"/>
+                            <DataGridTextColumn Binding="{Binding close_date, StringFormat=d}" Header="CLOSE" Width="90"/>
+                            <DataGridTextColumn Binding="{Binding book_title}" Header="BOOK" Width="200"/>
+                            <DataGridTextColumn Binding="{Binding cStudent.full_name}" Header="STUDENT" Width="200"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="info" Content="?" Click="info_Click" Width="30" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1" FontFamily="Arial Black" FontSize="26" BorderThickness="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Center"/>
+    </Grid>
+</Window>

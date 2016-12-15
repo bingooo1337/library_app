@@ -1,0 +1,35 @@
+﻿<Window x:Class="library.blank"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:library"
+        mc:Ignorable="d"
+        Title="Adding Blank" Height="420" Width="1000" FontFamily="Calibri" FontSize="18" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" x:Name="bookGrid" Background="{x:Null}" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" CanUserResizeRows="False" CanUserAddRows="False" Width="360" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled" Margin="624,10,0,81">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding title}" Header="TITLE" Width="170"/>
+                <DataGridTextColumn Binding="{Binding author}" Header="AUTHOR" Width="90"/>
+                <DataGridTextColumn Binding="{Binding available}" Header="IN STOCK" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid AutoGenerateColumns="False" x:Name="studentGrid" Background="{x:Null}" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" CanUserResizeRows="False" CanUserAddRows="False" Width="360" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled" Margin="10,10,0,81">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding full_name}" Header="FULL NAME" Width="270"/>
+                <DataGridTextColumn Binding="{Binding books_amount}" Header="BOOKS" Width="90"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="ADD" HorizontalAlignment="Center" Margin="0,340,0,0" VerticalAlignment="Top" Width="100" Click="adding"/>
+        <Label Content="Adding Blank" HorizontalAlignment="Center" Height="40" Margin="0,20,0,0" VerticalAlignment="Top" Width="140" FontSize="25"/>
+        <Label Content="Status" HorizontalAlignment="Center" Margin="0,70,0,0" VerticalAlignment="Top" Height="30"/>
+        <Label Content="Open" HorizontalAlignment="Center" Margin="0,130,0,0" VerticalAlignment="Top" Height="30"/>
+        <Label Content="Close (Not necessarily)" HorizontalAlignment="Center" Margin="0,190,0,0" VerticalAlignment="Top" Height="30"/>
+        <DatePicker x:Name="open_date_pick" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" Width="140" SelectedDateFormat="Short"/>
+        <DatePicker x:Name="close_date_pick" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top" Width="140" SelectedDateFormat="Short"/>
+        <ComboBox x:Name="status_box" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="140">
+            <ComboBoxItem>Open</ComboBoxItem>
+            <ComboBoxItem>Closed</ComboBoxItem>
+        </ComboBox>
+    </Grid>
+</Window>

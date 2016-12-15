@@ -1,0 +1,19 @@
+﻿<Window x:Class="library.student"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:library"
+        mc:Ignorable="d"
+        Title="Adding Student" Height="420" Width="400" FontFamily="Calibri" FontSize="18" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBox x:Name="nameTB" HorizontalAlignment="Center" Height="30" Margin="0,120,0,0" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="codeTB" HorizontalAlignment="Center" Height="30" Margin="0,180,0,0" VerticalAlignment="Top" Width="140"/>
+        <TextBox x:Name="numberTB" HorizontalAlignment="Center" Height="30" Margin="0,240,0,0" VerticalAlignment="Top" Width="140"/>
+        <Button Content="ADD" HorizontalAlignment="Center" Margin="0,320,0,0" VerticalAlignment="Top" Width="100" Click="adding"/>
+        <Label Content="Adding Student" HorizontalAlignment="Center" Height="40" Margin="112,20,112,0" VerticalAlignment="Top" Width="170" FontSize="25"/>
+        <Label Content="Full Name" HorizontalAlignment="Center" Margin="0,90,0,0" VerticalAlignment="Top" Height="30"/>
+        <Label Content="Student Card code" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Height="30"/>
+        <Label Content="Mobile number" HorizontalAlignment="Center" Margin="0,210,0,0" VerticalAlignment="Top" Height="30"/>
+    </Grid>
+</Window>

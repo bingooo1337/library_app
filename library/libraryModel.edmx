@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище libraryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cBook">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="author" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="year_pub" Type="int" Nullable="false" />
+          <Property Name="available" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cStudent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="full_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="student_code" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="mob_number" Type="nvarchar" MaxLength="20" />
+          <Property Name="books_amount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vBlank">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="open_date" Type="date" Nullable="false" />
+          <Property Name="close_date" Type="date" />
+          <Property Name="book_title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="author" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="year_pub" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="book_id" Type="int" Nullable="false" />
+          <Property Name="student_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_vBlank_cBook">
+          <End Role="cBook" Type="Self.cBook" Multiplicity="1" />
+          <End Role="vBlank" Type="Self.vBlank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cBook">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="vBlank">
+              <PropertyRef Name="book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vBlank_cStudent">
+          <End Role="cStudent" Type="Self.cStudent" Multiplicity="1" />
+          <End Role="vBlank" Type="Self.vBlank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cStudent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="vBlank">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище libraryModelContainer">
+          <EntitySet Name="cBook" EntityType="Self.cBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cStudent" EntityType="Self.cStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vBlank" EntityType="Self.vBlank" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_vBlank_cBook" Association="Self.FK_vBlank_cBook">
+            <End Role="cBook" EntitySet="cBook" />
+            <End Role="vBlank" EntitySet="vBlank" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vBlank_cStudent" Association="Self.FK_vBlank_cStudent">
+            <End Role="cStudent" EntitySet="cStudent" />
+            <End Role="vBlank" EntitySet="vBlank" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="libraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cBook">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="year_pub" Type="Int32" Nullable="false" />
+          <Property Name="available" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="vBlank" Relationship="Self.FK_vBlank_cBook" FromRole="cBook" ToRole="vBlank" />
+        </EntityType>
+        <EntityType Name="cStudent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="full_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="student_code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="mob_number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="books_amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="vBlank" Relationship="Self.FK_vBlank_cStudent" FromRole="cStudent" ToRole="vBlank" />
+        </EntityType>
+        <EntityType Name="vBlank">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="open_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="close_date" Type="DateTime" Precision="0" />
+          <Property Name="book_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="year_pub" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="book_id" Type="Int32" Nullable="false" />
+          <Property Name="student_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cBook" Relationship="Self.FK_vBlank_cBook" FromRole="vBlank" ToRole="cBook" />
+          <NavigationProperty Name="cStudent" Relationship="Self.FK_vBlank_cStudent" FromRole="vBlank" ToRole="cStudent" />
+        </EntityType>
+        <Association Name="FK_vBlank_cBook">
+          <End Role="cBook" Type="Self.cBook" Multiplicity="1" />
+          <End Role="vBlank" Type="Self.vBlank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cBook">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="vBlank">
+              <PropertyRef Name="book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vBlank_cStudent">
+          <End Role="cStudent" Type="Self.cStudent" Multiplicity="1" />
+          <End Role="vBlank" Type="Self.vBlank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cStudent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="vBlank">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="libraryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cBook" EntityType="Self.cBook" />
+          <EntitySet Name="cStudent" EntityType="Self.cStudent" />
+          <EntitySet Name="vBlank" EntityType="Self.vBlank" />
+          <AssociationSet Name="FK_vBlank_cBook" Association="Self.FK_vBlank_cBook">
+            <End Role="cBook" EntitySet="cBook" />
+            <End Role="vBlank" EntitySet="vBlank" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vBlank_cStudent" Association="Self.FK_vBlank_cStudent">
+            <End Role="cStudent" EntitySet="cStudent" />
+            <End Role="vBlank" EntitySet="vBlank" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище libraryModelContainer" CdmEntityContainer="libraryEntities">
+          <EntitySetMapping Name="cBook">
+            <EntityTypeMapping TypeName="libraryModel.cBook">
+              <MappingFragment StoreEntitySet="cBook">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="year_pub" ColumnName="year_pub" />
+                <ScalarProperty Name="available" ColumnName="available" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cStudent">
+            <EntityTypeMapping TypeName="libraryModel.cStudent">
+              <MappingFragment StoreEntitySet="cStudent">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="student_code" ColumnName="student_code" />
+                <ScalarProperty Name="mob_number" ColumnName="mob_number" />
+                <ScalarProperty Name="books_amount" ColumnName="books_amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vBlank">
+            <EntityTypeMapping TypeName="libraryModel.vBlank">
+              <MappingFragment StoreEntitySet="vBlank">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="open_date" ColumnName="open_date" />
+                <ScalarProperty Name="close_date" ColumnName="close_date" />
+                <ScalarProperty Name="book_title" ColumnName="book_title" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="year_pub" ColumnName="year_pub" />
+                <ScalarProperty Name="book_id" ColumnName="book_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
